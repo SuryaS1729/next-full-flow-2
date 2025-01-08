@@ -4,14 +4,6 @@ import { NextRequest, NextResponse } from "next/server";
 
 const client= new PrismaClient
 
-export async function GET(req: NextRequest){
-    const user = await client.user.findFirst();
-
-        return NextResponse.json({
-            email:user?.email,
-            name: "whatever the fuck your name is"
-        })
-}
 
 export async function POST(req: NextRequest){
     //body
