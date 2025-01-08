@@ -1,24 +1,22 @@
-"use client"
 
 import axios from "axios";
-import { useEffect, useState } from "react";
 
-export default function User() {
 
-    const [data,setData]=useState({
-        email:"",
-        name:""
-    })
+async function fetchData(){
+    
+    const response = await axios.get("https://week-13-offline.kirattechnologies.workers.dev/api/v1/user/details")
+    return response.data
+}
+export default async function User() {
 
-    useEffect(()=>{
-        axios.get("https://week-13-offline.kirattechnologies.workers.dev/api/v1/user/details")
-        .then(response =>{
-            setData(response.data)
-        })
-    },[])
+    const data = await fetchData()
+
+
     return (
-      <div>{data.email}
-      {data.name}</div>
+      <div>
+        {data.email}
+        {data.name}
+      </div>
     );
   }
   
